@@ -1,0 +1,17 @@
+{
+    "name": "com.DaBois.EasySettings.Editor.asmdef",
+    "references": [
+        "GUID:0cd2dceb8c1370e4fa67c571b0bfa0ad"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
