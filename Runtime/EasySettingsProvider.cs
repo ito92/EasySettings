@@ -55,7 +55,12 @@ namespace DaBois.Settings
             {
                 var oldPath = AssetDatabase.GetAssetPath(instances[0]);
                 var result = AssetDatabase.MoveAsset(oldPath, path);
-                if (string.IsNullOrEmpty(result))
+
+                if(oldPath == path)
+                {
+                    Debug.Log(instances[0] + " is in the correct path. Skipping moving");
+                }
+                else if (string.IsNullOrEmpty(result))
                 {
                     return _instance = instances[0];
                 }
