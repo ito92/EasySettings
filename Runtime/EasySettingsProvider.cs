@@ -59,10 +59,13 @@ namespace DaBois.Settings
                 if(oldPath == path)
                 {
                     Debug.Log(instances[0] + " is in the correct path. Skipping moving");
+                    _instance = instances[0];
+                    return _instance;
                 }
                 else if (string.IsNullOrEmpty(result))
                 {
-                    return _instance = instances[0];
+                    _instance = instances[0];
+                    return _instance;
                 }
                 else
                 {
