@@ -11,6 +11,7 @@ namespace DaBois.Settings.Editor
         private string _fileName = "NewMySettings";
         private string _title = "My settings title";
         private string[] _tags = new string[0];
+        private SettingsScope _scope = SettingsScope.Project;
 
         [MenuItem("DaBois/Easy Settings/Generate new settings")]
         private static void Init()
@@ -29,6 +30,8 @@ namespace DaBois.Settings.Editor
             _path = EditorGUILayout.TextField("Settings Path", _path);
             _fileName = EditorGUILayout.TextField("Asset Name", _fileName);
             _title = EditorGUILayout.TextField("Title", _title);
+            EditorGUILayout.PrefixLabel("Scope");
+            _scope = (SettingsScope)EditorGUILayout.EnumPopup(_scope);
 
             int newSize = _tags.Length;
             newSize = EditorGUILayout.DelayedIntField("Tags", newSize);
@@ -116,7 +119,7 @@ namespace DaBois.Settings.Editor
                     tagsString += "\"" + _tags[i] + "\"" + (i + 1 < _tags.Length ? ", " : "");
                 }
 
-                sf.WriteLine("[EasySettings(\"" + _path + "\", \"" + _fileName + "\", \"" + _title + "\", new string[] { " + tagsString + " })]");
+                sf.WriteLine("[EasySettings(\"" + _path + "\", \"" + _fileName + "\", \"" + _title + "\", " + GetFullEnumName(_scope) + ", new string[] { " + tagsString + " })]");
                 sf.WriteLine("public class " + _className + " : EasySettingsProvider<" + _className + ">");
                 sf.WriteLine("{");
                 sf.WriteLine("    public override void RuntimeInit()");
@@ -140,6 +143,11 @@ namespace DaBois.Settings.Editor
             AssetDatabase.Refresh();
 
             Close();
+        }
+
+        private string GetFullEnumName(System.Enum en)
+        {
+            return string.Format("{0}.{1}", en.GetType().Name, en.ToString());
         }
     }
 }

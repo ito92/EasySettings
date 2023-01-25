@@ -100,7 +100,7 @@ namespace DaBois.Settings
 
         public virtual SettingsProvider GenerateProvider()
         {
-            var provider = new SettingsProvider(Attribute.displayPath, SettingsScope.Project)
+            var provider = new SettingsProvider(Attribute.displayPath, Attribute.settingsScope)
             {
                 label = Attribute.title,
                 guiHandler = (searchContext) =>
