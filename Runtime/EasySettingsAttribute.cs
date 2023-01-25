@@ -19,6 +19,14 @@ namespace DaBois.Settings
 #endif
         }
 
+        public EasySettingsAttribute(string displayPath, string filename, string title, string[] tags = null)
+        {
+            this.filename = filename;
+            this.displayPath = displayPath;
+            this.title = title;
+            this.tags = tags;
+        }
+
         public readonly string displayPath;
         public readonly string filename;
         public readonly string title;
