@@ -8,6 +8,7 @@ namespace DaBois.Settings
     #if UNITY_EDITOR
         UnityEditor.SettingsScope settingsScope,
     #endif
+        string tag = null,
          string[] tags = null)
         {
             this.filename = filename;
