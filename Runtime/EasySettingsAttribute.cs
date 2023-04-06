@@ -4,29 +4,27 @@ namespace DaBois.Settings
 {
     public class EasySettingsAttribute : Attribute
     {
-        public EasySettingsAttribute(string displayPath, string filename, string title,
-    #if UNITY_EDITOR
-        UnityEditor.SettingsScope settingsScope,
-    #endif
-        string tag = null,
-         string[] tags = null)
+        public enum scope { User, Project }
+
+        public EasySettingsAttribute(string displayPath, string filename, string title, scope settingsScope, string[] tags = null)
         {
             this.filename = filename;
             this.displayPath = displayPath;
             this.title = title;
             this.tags = tags;
 #if UNITY_EDITOR
-            this.settingsScope = settingsScope;
+            switch(settingsScope)
+            {
+                case scope.User:
+                this.settingsScope = UnityEditor.SettingsScope.User;
+                break;
+                case scope.Project:
+                this.settingsScope = UnityEditor.SettingsScope.Project;
+                break;
+            }            
 #endif
         }
 
-        public EasySettingsAttribute(string displayPath, string filename, string title, string[] tags = null)
-        {
-            this.filename = filename;
-            this.displayPath = displayPath;
-            this.title = title;
-            this.tags = tags;
-        }
 
         public readonly string displayPath;
         public readonly string filename;
