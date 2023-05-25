@@ -121,7 +121,7 @@ namespace DaBois.Settings.Editor
                     tagsString += "\"" + _tags[i] + "\"" + (i + 1 < _tags.Length ? ", " : "");
                 }
 
-                sf.WriteLine("[EasySettings(\"" + _path + "\", \"" + _fileName + "\", \"" + _title + "\", " + GetFullEnumName(_scope) + ", new string[] { " + tagsString + " })]");
+                sf.WriteLine("[EasySettings(\"" + _path + "\", \"" + _fileName + "\", \"" + _title + "\", EasySettingsAttribute." + GetFullEnumName(_scope) + ", new string[] { " + tagsString + " })]");
                 sf.WriteLine("public class " + _className + " : EasySettingsProvider<" + _className + ">");
                 sf.WriteLine("{");
                 sf.WriteLine("    public override void RuntimeInit()");
