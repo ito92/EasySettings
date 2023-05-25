@@ -11,7 +11,7 @@ namespace DaBois.Settings.Editor
         private string _fileName = "NewMySettings";
         private string _title = "My settings title";
         private string[] _tags = new string[0];
-        private SettingsScope _scope = SettingsScope.Project;
+        private EasySettingsAttribute.scope _scope = EasySettingsAttribute.scope.Project;
 
         [MenuItem("DaBois/Easy Settings/Generate new settings")]
         private static void Init()
@@ -30,8 +30,10 @@ namespace DaBois.Settings.Editor
             _path = EditorGUILayout.TextField("Settings Path", _path);
             _fileName = EditorGUILayout.TextField("Asset Name", _fileName);
             _title = EditorGUILayout.TextField("Title", _title);
+            EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("Scope");
-            _scope = (SettingsScope)EditorGUILayout.EnumPopup(_scope);
+            _scope = (EasySettingsAttribute.scope)EditorGUILayout.EnumPopup(_scope);
+            EditorGUILayout.EndHorizontal();
 
             int newSize = _tags.Length;
             newSize = EditorGUILayout.DelayedIntField("Tags", newSize);
